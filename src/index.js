@@ -66,12 +66,8 @@ const server = http.createServer(app);
 // ✅ Setup Socket.io (minimal)
 const io = new Server(server, {
   cors: {
-    origin: [
-      "http://localhost:5173",
-      "https://skill-barter-frontend-2.vercel.app",
-    ],
+    origin: "*",
     methods: ["GET", "POST"],
-    credentials: true,
   },
 });
 
