@@ -26,12 +26,12 @@ const PORT = process.env.PORT || 3000;
 // ✅ Middleware
 app.use(express.json());
 app.use(morgan("dev"));
-app.use(
+aapp.use(
   cors({
-   origin: [
-  "http://localhost:5173",
-  "https://skill-barter-frontend-2.vercel.app",
-]
+    origin: [
+      "http://localhost:5173",
+      "https://skill-barter-frontend-2.vercel.app",
+    ],
     methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
@@ -65,10 +65,14 @@ const server = http.createServer(app);
 
 // ✅ Setup Socket.io (minimal)
 const io = new Server(server, {
-  origin: [
-  "http://localhost:5173",
-  "https://skill-barter-frontend-2.vercel.app",
-]
+  cors: {
+    origin: [
+      "http://localhost:5173",
+      "https://skill-barter-frontend-2.vercel.app",
+    ],
+    methods: ["GET", "POST"],
+    credentials: true,
+  },
 });
 
 // ✅ Socket events (safe, minimal)
